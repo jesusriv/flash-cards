@@ -185,8 +185,9 @@ const extractSet = (data) => {
     });
 }
 
-if (localStorage.length) {
+if (localStorage.getItem('default')) {
     document.getElementById('set').style.display = "flex";
     const setName = localStorage.getItem("default")
+    console.log(setName);
     extractSet(JSON.parse(localStorage.getItem(setName)));
 }
