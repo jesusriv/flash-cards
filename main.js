@@ -15,12 +15,12 @@ class CardSet {
         this.cards.push(card);
     }
 
-    displayDeck() {
+    displayDeck(index) {
         document.querySelector('#set-title').innerHTML = this.name;
-        document.querySelector('.front').innerHTML = this.cards[0].title;
-        document.querySelector('.back').innerHTML = this.cards[0].body;
+        document.querySelector('.front').innerHTML = this.cards[index].title;
+        document.querySelector('.back').innerHTML = this.cards[index].body;
 
-        this.displayCardCount(1);
+        index == 0 ? this.displayCardCount(1) : null;
     }
 
     displayCardCount(position) {
@@ -43,52 +43,10 @@ function flip() {
     document.getElementById('card').classList.toggle('flipped');
 }
 
-const add = () => {
-    document.getElementById('modal').style.display = 'flex';
-    document.getElementById('submitSet').style.display = 'flex';
-    document.querySelector('.submit-set').style.display = 'flex';
-}
+document.querySelector('.exit').addEventListener('click', closeSetForm);
+document.querySelector('.exit-form').addEventListener('click', closeCardForm);
+document.querySelector('.exit-all').addEventListener('click', closeAllSetList);
 
-const addToSet = () => {
-    document.getElementById('modal').style.display = 'flex';
-    document.getElementById('add-to-set').style.display = 'flex';
-    document.querySelector('.add-card').style.display = 'flex';
-
-    document.getElementById('submitSet').style.display = 'none';
-    document.querySelector('.submit-set').style.display = 'none';
-}
-
-const viewAll = () => {
-    document.getElementById('modal').style.display = 'flex';
-    document.getElementById('all-sets').style.display = 'flex';
-    if (localStorage.getItem('all') && !all) {
-        all = [...JSON.parse(localStorage.getItem('all'))];
-    }
-    if (all) {
-        console.log(all);
-        for (let i = 0; i < all.length; i++) {
-            document.getElementById('all-sets').innerHTML += 
-            `<div class="list">
-                <p class="list-title">${all[i].name}</p>
-                <div class="toggle">
-                    <button id="toggle-btn"></button>
-                </div>
-             </div>`
-        }
-    }
-}
-
-document.querySelector('.exit').addEventListener('click', () => {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('submitSet').style.display = 'none';
-    document.querySelector('.submit-set').style.display = 'none';
-});
-
-document.querySelector('.exit-form').addEventListener('click', () => {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('add-to-set').style.display = 'none';
-    document.querySelector('.add-card').style.display = 'none';
-});
 
 document.getElementById('submitSet').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -112,11 +70,12 @@ document.getElementById('submitSet').addEventListener('submit', (e) => {
         localStorage.setItem('all', JSON.stringify(all));
     }
 
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('submitSet').style.display = 'none';
+    closeCardForm;
+    closeAllSetList;
+    closeSetForm;
     document.getElementById('set').style.display = "flex";
     
-    currentSet.displayDeck();
+    currentSet.displayDeck(0);
 
     document.getElementById('set-name').value = '';
     document.getElementById('card-title').value = '';
@@ -130,30 +89,16 @@ document.getElementById('add-to-set').addEventListener('submit', (e) => {
 
     currentSet.addCard(title, body);
     currentSet.displayCardCount(currentSet.cards.length);
+    currentSet.displayDeck(currentSet.cards.length - 1);
     
-    document.getElementById('next').addEventListener('click', () => {
-        if (currentSet.currentCard < currentSet.cards.length) {
-            currentSet.currentCard += 1;
-            document.querySelector('.front').innerHTML = currentSet.cards[currentSet.currentCard - 1].title;
-            document.querySelector('.back').innerHTML = currentSet.cards[currentSet.currentCard - 1].body;
-            currentSet.displayCardCount(currentSet.currentCard);
-        }
-    });
-
-
-    document.getElementById('prev').addEventListener('click', () => {
-        if (currentSet.currentCard > 1) {
-            currentSet.currentCard -= 1;
-            document.querySelector('.front').innerHTML = currentSet.cards[currentSet.currentCard - 1].title;
-            document.querySelector('.back').innerHTML = currentSet.cards[currentSet.currentCard - 1].body;
-            currentSet.displayCardCount(currentSet.currentCard);
-        }
-    });
+    document.getElementById('next').addEventListener('click', next);
+    document.getElementById('prev').addEventListener('click', prev);
 
     localStorage.setItem(currentSet.name, JSON.stringify(currentSet));
 
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('add-to-set').style.display = 'none';
+    closeCardForm;
+    closeAllSetList;
+    closeSetForm;
     document.getElementById('title').value = '';
     document.getElementById('body').value = '';
 });
@@ -163,31 +108,16 @@ const extractSet = (data) => {
     for (let i = 0; i < data.cards.length; i++) {
         currentSet.addCard(data.cards[i].title, data.cards[i].body);
     }
-    currentSet.displayDeck();
+    currentSet.displayDeck(0);
 
-    document.getElementById('next').addEventListener('click', () => {
-        if (currentSet.currentCard < currentSet.cards.length) {
-            currentSet.currentCard += 1;
-            document.querySelector('.front').innerHTML = currentSet.cards[currentSet.currentCard - 1].title;
-            document.querySelector('.back').innerHTML = currentSet.cards[currentSet.currentCard - 1].body;
-            currentSet.displayCardCount(currentSet.currentCard);
-        }
-    });
+    document.getElementById('next').addEventListener('click', next);
 
 
-    document.getElementById('prev').addEventListener('click', () => {
-        if (currentSet.currentCard > 1) {
-            currentSet.currentCard -= 1;
-            document.querySelector('.front').innerHTML = currentSet.cards[currentSet.currentCard - 1].title;
-            document.querySelector('.back').innerHTML = currentSet.cards[currentSet.currentCard - 1].body;
-            currentSet.displayCardCount(currentSet.currentCard);
-        }
-    });
+    document.getElementById('prev').addEventListener('click', prev);
 }
 
 if (localStorage.getItem('default')) {
     document.getElementById('set').style.display = "flex";
     const setName = localStorage.getItem("default")
-    console.log(setName);
     extractSet(JSON.parse(localStorage.getItem(setName)));
 }

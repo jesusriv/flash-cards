@@ -54,16 +54,16 @@ form input[type = 'text'] {
     position: relative;
 }
 
-.exit, .exit-form {
+.exit, .exit-form, .exit-all {
     position: absolute;
     right: 1.6rem;
     top: 1.6rem;
 }
-.exit:hover, .exit-form:hover {cursor: pointer;}
+.exit:hover, .exit-form:hover, .exit-all:hover {cursor: pointer;}
 
 #all-sets {
     width: 30rem;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     padding: 1rem 0;
