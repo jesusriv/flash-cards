@@ -1,0 +1,232 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {font-family: Open Sans;}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    font-size: 62.5%;
+    color: #333;
+    position: relative;
+}
+form {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30rem;
+    margin: 0 auto;
+    height: 100%;
+}
+
+form input[type = 'text'] {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+}
+
+.modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.add-card, .submit-set {display: none;}
+
+.forms, #all-sets {
+    width: 50rem;
+    height: 30rem;
+    background-color: white;
+    position: relative;
+}
+
+.exit, .exit-form {
+    position: absolute;
+    right: 1.6rem;
+    top: 1.6rem;
+}
+.exit:hover, .exit-form:hover {cursor: pointer;}
+
+#all-sets {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.list {
+    width: 70%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-title {font-size: 1.4rem;}
+
+.toggle {
+    width: 3.5rem;
+    height: 2rem;
+    border-radius: 1rem;
+    background-color: #CCCCCC;
+    position: relative;
+}
+
+#toggle-btn:hover {cursor: pointer;}
+
+#toggle-btn {
+    border: none;
+    position: absolute;
+    background-color: white;
+    top: .2rem;
+    left: .2rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+}
+
+header {
+    max-width: 133.6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ul button, input[type = 'submit'] {
+    color: #444;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-right: 2rem;
+    padding: .7rem 0;
+    width: 10rem;
+    border: 2px solid rgb(69, 121, 118);
+    background-color: white;
+    font-weight: 600;
+}
+ul button:hover, input[type = 'submit']:hover {cursor: pointer; background-color: rgb(69, 121, 118); color: white}
+
+button:first-child {
+    background-color: rgb(69, 121, 118);
+    color: white;
+}
+
+#set {
+    position: relative;
+    width: 40rem;
+    margin: 0 auto;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    padding-top: 3rem;
+    position: relative;
+}
+
+h1 {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+    position: relative;
+}
+
+.plus {
+    border: none;
+    width: 1.8rem;
+    background-color: white;
+    position: absolute;
+    right: 1rem;
+    top: 8rem;
+}
+.plus img {width: 1.8rem;}
+.plus:hover {cursor: pointer;}
+
+#prev:hover, #next:hover {cursor: pointer;}
+
+.card {
+    position: absolute;
+    width: 38rem;
+    height: 23rem;
+    box-shadow: 0 -1px 1.5rem rgba(0,0,0,0.1);
+    align-self: center;
+    font-size: 2rem;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: transform 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+    margin-top: 8rem;
+}
+
+
+.card div {
+    background-color: white;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card .back {
+    -webkit-transform: rotateX( 180deg );
+    -moz-transform: rotateX( 180deg );
+    -o-transform: rotateX( 180deg );
+    transform: rotateX( 180deg );
+}
+.card:hover {cursor: pointer;}
+
+.card-count {
+    margin: 1.5rem auto 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    width: 10rem;
+}
+
+.flipped {
+    -webkit-transform: rotateX( 180deg );
+    -moz-transform: rotateX( 180deg );
+    -o-transform: rotateX( 180deg );
+    transform: rotateX( 180deg );
+}
+
+.flipback {
+    -webkit-transform: rotateX( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+#card-count {font-size: 1.2rem; letter-spacing: .3rem;}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flash Cards</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div id="modal" class="modal">
+        <div class="forms submit-set">
+            <img class="exit" src="./assets/exit.svg" alt="exit">
+            <form id="submitSet">
+                <h2>Add A New Set</h2>
+                <input type="text" name="setName" id="set-name" placeholder="Set Name">
+                <input type="text" name="card-title" id="card-title" placeholder="Title">
+                <input type="text" name="card-body" id="card-body" placeholder="Body">
+                <input type="submit" value="Add Set">
+            </form>
+        </div>
+        <div class="forms add-card">
+            <img class="exit-form" src="./assets/exit.svg" alt="exit">
+            <form id="add-to-set">
+                <h2>Add More Cards</h2>
+                <input type="text" name="-title" id="title" placeholder="Title">
+                <input type="text" name="card-body" id="body" placeholder="Body">
+                <input type="submit" value="Add Card">
+            </form>
+        </div>
+
+        <div id="all-sets">
+            <h1>All Sets</h1>
+        </div>
+    </div>
+
+    <header>
+        <ul>
+            <button onclick="add()">Add Set</button>
+            <button onclick="viewAll()">View Sets</button>
+        </ul>
+    </header>
+
+    <div class="container">
+        <div class="set" id="set">
+            <h1 id="set-title"></h1>
+            <button class="plus" onclick="addToSet()"><img src="./assets/add.svg" alt="add"></button>
+            <div id="card" class="card" onclick="flip()">
+                <div class="front"></div>
+                <div class="back"></div>
+            </div>
+            <div class="card-count">
+                <img id="prev" src="./assets/left.svg" alt="left" />
+                <p id="card-count"></p>
+                <img id="next" src="./assets/right.svg" alt="right" />
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script> 
+</body>
+</html>
