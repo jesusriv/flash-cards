@@ -32,17 +32,22 @@
         <div id="all-sets">
             <img class="exit-all" onclick="closeAllSetList()" src="./assets/exit.svg" alt="exit">
             <h1>All Sets</h1>
+            <div id="bottom">
+
+            </div>
         </div>
     </div>
 
     <header>
         <ul>
-            <button onclick="add()">Add Set</button>
-            <button onclick="viewAll()">View Sets</button>
+            <a onclick="add()">Add Set</a>
+            <a onclick="viewAll()">View Sets</a>
+            <a onclick="viewAll()">How It Works</a>
         </ul>
     </header>
 
     <div class="container">
+        <h1 id="welcome">Start By Adding a New Set</h1>
         <div class="set" id="set">
             <h1 id="set-title"></h1>
             <button class="plus" onclick="addToSet()"><img src="./assets/add.svg" alt="add"></button>
@@ -57,7 +62,6 @@
             </div>
         </div>
     </div>
-    <script src="./functions.js"></script> 
-    <script src="./main.js"></script> 
+    <script src="./js/main.js"></script> 
 </body>
 </html>
