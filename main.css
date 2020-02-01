@@ -15,6 +15,7 @@ body {
     height: 100vh;
     position: relative;
 }
+button {webkit-appearance: none;}
 form {
     display: none;
     flex-direction: column;
